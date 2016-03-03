@@ -27,4 +27,10 @@
         android:layout_height="wrap_content"
         android:text="从列表创建一个Observable"/>
 
+    <Button
+        android:id="@+id/observable_just_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observable just() and repeat"/>
+
 </LinearLayout>

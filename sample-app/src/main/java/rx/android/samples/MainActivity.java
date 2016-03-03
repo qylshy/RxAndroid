@@ -61,6 +61,37 @@ public class MainActivity extends Activity {
                 observablefrom();
             }
         });
+
+        findViewById(R.id.observable_just_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppInfo oneAppInfo = getAppList().get(0);
+                AppInfo twoAppInfo = getAppList().get(5);
+                AppInfo threeAppInfo = getAppList().get(10);
+                loadApp(oneAppInfo, twoAppInfo, threeAppInfo);
+            }
+        });
+    }
+
+    private  void loadApp(AppInfo appInfo1, AppInfo appInfo2, AppInfo appInfo3){
+        Observable.just(appInfo1, appInfo2, appInfo3)
+                .repeat(3)
+                .subscribe(new Subscriber<AppInfo>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.i(TAG, "just: onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i(TAG, "just: onError " + e.toString());
+                    }
+
+                    @Override
+                    public void onNext(AppInfo appInfo) {
+                        Log.i(TAG, "just: " +appInfo.toString());
+                    }
+                });
     }
 
     private List<AppInfo> getAppList(){
