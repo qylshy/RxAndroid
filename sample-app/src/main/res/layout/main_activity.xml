@@ -15,4 +15,10 @@
         android:layout_height="wrap_content"
         android:text="@string/button_run_scheduler"/>
 
+    <Button
+        android:id="@+id/first_observable_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="first observable"/>
+
 </LinearLayout>
