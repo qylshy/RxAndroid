@@ -54,6 +54,34 @@ public class MainActivity extends Activity {
                 refreshList();
             }
         });
+
+        findViewById(R.id.create_observable_from_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                observablefrom();
+            }
+        });
+    }
+
+    private List<AppInfo> getAppList(){
+        List<PackageInfo> apps = new ArrayList<PackageInfo>();
+        PackageManager pManager = getPackageManager();
+        //获取手机内所有应用
+        List<PackageInfo> paklist = pManager.getInstalledPackages(0);
+        for (int i = 0; i < paklist.size(); i++) {
+            PackageInfo pak = (PackageInfo) paklist.get(i);
+            //判断是否为非系统预装的应用程序
+            if ((pak.applicationInfo.flags & pak.applicationInfo.FLAG_SYSTEM) <= 0) {
+                // customs applications
+                apps.add(pak);
+            }
+        }
+
+        List<AppInfo> result = new ArrayList<>();
+        for (PackageInfo packageInfo : apps){
+            result.add(new AppInfo(packageInfo.packageName, packageInfo.lastUpdateTime, packageInfo.toString()));
+        }
+        return result;
     }
 
     private Observable<AppInfo> getApps(){
@@ -106,6 +134,27 @@ public class MainActivity extends Activity {
                         for (AppInfo appInfo : appInfos){
                             Log.i(TAG, appInfo.toString());
                         }
+                    }
+                });
+    }
+
+    private void observablefrom(){
+        Observable.from(getAppList())
+                .subscribe(new Subscriber<AppInfo>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.i(TAG, "from :  onCompleted" );
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i(TAG, "from :  onError " + e.toString() );
+                    }
+
+                    @Override
+                    public void onNext(AppInfo appInfo) {
+                        Log.i(TAG, "from :" + appInfo.toString());
+
                     }
                 });
     }
