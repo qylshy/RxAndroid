@@ -33,4 +33,34 @@
         android:layout_height="wrap_content"
         android:text="Observable just() and repeat"/>
 
+    <Button
+        android:id="@+id/observable_defer_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observable defer()"/>
+
+    <Button
+        android:id="@+id/observable_range_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observable range()"/>
+
+    <Button
+        android:id="@+id/observable_interval_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observable interval()"/>
+
+    <Button
+        android:id="@+id/observable_filter_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observable filter()"/>
+
+    <Button
+        android:id="@+id/observable_group_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observable GroupBy()"/>
+
 </LinearLayout>
